@@ -1,0 +1,28 @@
+{
+  "name": "nestjs-auth-supabase-example",
+  "version": "0.0.1",
+  "description": "Example application for nestjs-auth-supabase",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/main.js",
+    "dev": "ts-node src/main.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@nestjs/common": "11.0.14",
+    "@nestjs/core": "11.0.14",
+    "@nestjs/platform-express": "11.0.14",
+    "cookie-parser": "1.4.7",
+    "dotenv": "16.4.5",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.8",
+    "@types/express": "^5.0.1",
+    "@types/node": "22.14.0",
+    "ts-node": "^10.9.2",
+    "typescript": "5.8.3"
+  }
+} 
