@@ -25,7 +25,7 @@ import { AppService } from "./app.service";
   imports: [
     SupabaseAuthModule.forRoot({
       supabaseUrl: "YOUR_SUPABASE_URL",
-      supabaseKey: "YOUR_SUPABASE_KEY",
+      supabaseKey: "YOUR_SUPABASE_ROLE_KEY",
     }),
   ],
   controllers: [AppController],
@@ -50,7 +50,7 @@ import { AppService } from "./app.service";
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         supabaseUrl: configService.get("SUPABASE_URL"),
-        supabaseKey: configService.get("SUPABASE_KEY"),
+        supabaseKey: configService.get("SUPABASE_ROLE_KEY"),
       }),
       inject: [ConfigService],
     }),
@@ -86,6 +86,10 @@ export class AuthService {
   async signOut(token?: string) {
     return this.supabaseAuthService.signOut(token);
   }
+
+  async generateMagicLink(token: string) {
+    return this.supabaseAuthService.generateMagicLink(token);
+  }
 }
 ```
 
@@ -118,6 +122,12 @@ export class AuthController {
   @Post("refresh")
   async refresh(@Body("refresh_token") refreshToken: string) {
     return this.authService.refreshSession(refreshToken);
+  }
+
+  @Post("magic-link")
+  async generateMagicLink(@Headers("authorization") authHeader: string) {
+    const token = authHeader.split(" ")[1];
+    return this.authService.generateMagicLink(token);
   }
 
   @Post("logout")
@@ -321,6 +331,7 @@ The middleware is automatically applied to all routes when you import the Supaba
 - `getUser(token: string)`: Get the current user
 - `refreshSession(refreshToken: string)`: Refresh the session
 - `signOut(token?: string)`: Sign out the current user. If token is provided, only the current session is invalidated; otherwise, all user sessions are invalidated (global sign out)
+- `generateMagicLink(token: string)`: Generate a magic link for the authenticated user. Returns a hashed token that can be used for passwordless authentication.
 
 ## Error Handling
 

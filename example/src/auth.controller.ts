@@ -156,4 +156,26 @@ export class AuthController {
       return { error: error.message || "Error during global signout" };
     }
   }
+
+  @Post("magic-link")
+  async generateMagicLink(@Req() req: Request) {
+    try {
+      const token =
+        req.cookies["access_token"] ||
+        (req.headers.authorization && req.headers.authorization.split(" ")[1]);
+
+      if (!token) {
+        throw new UnauthorizedException("No token provided");
+      }
+
+      const { hashed_token } = await this.authService.generateMagicLink(token);
+
+      return {
+        message: "Magic link generated successfully",
+        hashed_token,
+      };
+    } catch (error) {
+      return { error: error.message || "Error generating magic link" };
+    }
+  }
 }

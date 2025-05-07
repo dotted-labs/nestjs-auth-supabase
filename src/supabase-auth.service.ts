@@ -1,5 +1,10 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { SupabaseClient, User, Session } from "@supabase/supabase-js";
+import {
+  SupabaseClient,
+  User,
+  Session,
+  createClient,
+} from "@supabase/supabase-js";
 import { SUPABASE_CLIENT } from "./constants";
 import {
   InvalidCredentialsException,
@@ -9,9 +14,17 @@ import {
 
 @Injectable()
 export class SupabaseAuthService {
+  private adminClient: SupabaseClient;
+
   constructor(
     @Inject(SUPABASE_CLIENT) private readonly supabase: SupabaseClient
-  ) {}
+  ) {
+    // Initialize admin client
+    this.adminClient = createClient(
+      process.env.SUPABASE_URL,
+      process.env.SUPABASE_ROLE_KEY
+    );
+  }
 
   /**
    * Sign in with email and password
@@ -139,5 +152,57 @@ export class SupabaseAuthService {
   private isValidEmail(email: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
+  }
+
+  /**
+   * Generate a magic link for the authenticated user
+   * @param token - The user's authentication token
+   * @returns The hashed token from the generated magic link
+   */
+  async generateMagicLink(token: string): Promise<{ hashed_token: string }> {
+    try {
+      // First verify the user token
+      const { data: userData, error: userError } =
+        await this.supabase.auth.getUser(token);
+
+      if (userError) {
+        throw new InvalidTokenException("Invalid user token", userError);
+      }
+
+      const email = userData.user.email;
+      if (!email) {
+        throw new InvalidTokenException("User email not found");
+      }
+
+      // Generate magic link using admin client
+      const { data: magicLink, error: magicLinkError } =
+        await this.adminClient.auth.admin.generateLink({
+          type: "magiclink",
+          email,
+        });
+
+      if (magicLinkError) {
+        console.error("Magic link generation error:", magicLinkError);
+        throw new InvalidTokenException(
+          "Failed to generate magic link",
+          magicLinkError
+        );
+      }
+
+      const hashedToken = magicLink.properties?.hashed_token;
+      if (!hashedToken) {
+        throw new InvalidTokenException(
+          "Failed to extract token from magic link"
+        );
+      }
+
+      return { hashed_token: hashedToken };
+    } catch (error) {
+      console.error("Magic link error:", error);
+      if (error instanceof InvalidTokenException) {
+        throw error;
+      }
+      throw new InvalidTokenException("Failed to generate magic link", error);
+    }
   }
 }
