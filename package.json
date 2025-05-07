@@ -35,13 +35,14 @@
     "package.json"
   ],
   "dependencies": {
-    "@nestjs/common": "11.0.14",
-    "@nestjs/core": "11.0.14",
+    "@nestjs/common": "^11.0.14",
+    "@nestjs/core": "^11.0.14",
     "@nestjs/passport": "11.0.5",
-    "@supabase/supabase-js": "2.49.4",
+    "@nestjs/platform-express": "^11.1.0",
+    "@supabase/supabase-js": "^2.49.4",
     "@types/passport-jwt": "^4.0.1",
-    "cookie-parser": "1.4.7",
-    "express": "5.1.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.1.0",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "0.2.2",
@@ -61,8 +62,6 @@
     "typescript": "5.8.3"
   },
   "peerDependencies": {
-    "@nestjs/common": "11.0.14",
-    "@nestjs/core": "11.0.14",
     "reflect-metadata": "0.2.2",
     "rxjs": "7.8.2"
   }

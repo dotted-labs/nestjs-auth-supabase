@@ -34,7 +34,7 @@ This is an example of how to use the `nestjs-supabase-auth` library to manage au
    - Edit the `.env` file and add your Supabase credentials:
      ```
      SUPABASE_URL=https://your-project.supabase.co
-     SUPABASE_KEY=your-anon-key
+     SUPABASE_ANON_KEY=your-anon-key
      PORT=3000
      ```
 
