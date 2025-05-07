@@ -1,6 +1,6 @@
 {
   "name": "@dotted-labs/nestjs-auth-supabase",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "NestJS library for Supabase authentication",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
