@@ -1,6 +1,6 @@
 {
   "name": "@dotted-labs/nestjs-supabase-auth",
-  "version": "0.0.5",
+  "version": "0.0.1",
   "description": "NestJS library for Supabase authentication",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,10 +15,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "prepublish": "npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dotted-labs/nestjs-supabase-auth"
-  },
+  "repository": "https://github.com/dotted-labs/nestjs-supabase-auth",
   "keywords": [
     "nestjs",
     "supabase",
