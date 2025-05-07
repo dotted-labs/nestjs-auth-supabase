@@ -1,52 +1,52 @@
 # NestJS Auth Supabase Example
 
-Este es un ejemplo de cómo utilizar la librería `nestjs-auth-supabase` para gestionar la autenticación en una aplicación NestJS utilizando Supabase como proveedor de autenticación.
+This is an example of how to use the `nestjs-supabase-auth` library to manage authentication in a NestJS application using Supabase as the authentication provider.
 
-## Requisitos previos
+## Prerequisites
 
-- Node.js (v18 o superior)
-- Una cuenta en Supabase y un proyecto creado
+- Node.js (v18 or higher)
+- A Supabase account and a created project
 
-## Configuración
+## Configuration
 
-1. Clonar el repositorio o copiar los archivos del ejemplo.
+1. Clone the repository or copy the example files.
 
-2. Instalar las dependencias:
+2. Install dependencies:
 
    ```bash
    npm install
    ```
 
-3. Vincular la librería local para pruebas:
+3. Link the local library for testing:
 
    ```bash
-   # En la carpeta raíz de nestjs-auth-supabase
+   # In the root folder of nestjs-supabase-auth
    npm run build
    npm link
 
-   # En la carpeta del ejemplo
+   # In the example folder
    cd example
-   npm link nestjs-auth-supabase
+   npm link nestjs-supabase-auth
    ```
 
-4. Configurar las variables de entorno:
-   - Renombrar el archivo `.env.example` a `.env`
-   - Editar el archivo `.env` y agregar tus credenciales de Supabase:
+4. Configure environment variables:
+   - Rename the `.env.example` file to `.env`
+   - Edit the `.env` file and add your Supabase credentials:
      ```
-     SUPABASE_URL=https://tu-proyecto.supabase.co
-     SUPABASE_KEY=tu-clave-anon-key
+     SUPABASE_URL=https://your-project.supabase.co
+     SUPABASE_KEY=your-anon-key
      PORT=3000
      ```
 
-## Ejecutar el ejemplo
+## Running the example
 
-Para iniciar la aplicación en modo desarrollo:
+To start the application in development mode:
 
 ```bash
 npm run start:dev
 ```
 
-La aplicación estará disponible en: http://localhost:3000
+The application will be available at: http://localhost:3000
 
 ## Endpoints
 
@@ -79,7 +79,7 @@ La aplicación estará disponible en: http://localhost:3000
 
 ### Token Refresh for Web Applications
 
-For web applications using cookies, token refresh is handled automatically by the `RefreshTokenMiddleware` from the `nestjs-auth-supabase` library. When an access token expires, the middleware intercepts the request, checks for a valid refresh token, and automatically refreshes the session without requiring any explicit API call.
+For web applications using cookies, token refresh is handled automatically by the `RefreshTokenMiddleware` from the `nestjs-supabase-auth` library. When an access token expires, the middleware intercepts the request, checks for a valid refresh token, and automatically refreshes the session without requiring any explicit API call.
 
 ### Using the API with Mobile and Backend Applications
 
@@ -135,27 +135,27 @@ if (signOutResponse.ok) {
 }
 ```
 
-## Pruebas con herramientas como Postman o Insomnia
+## Testing with tools like Postman or Insomnia
 
-Para probar los endpoints que requieren autenticación:
+To test endpoints that require authentication:
 
-1. Primero realiza una petición a `/auth/signin`
-2. Las cookies se establecerán automáticamente
-3. Las peticiones subsiguientes utilizarán estas cookies para la autenticación
+1. First make a request to `/auth/signin`
+2. Cookies will be set automatically
+3. Subsequent requests will use these cookies for authentication
 
-## Colección de Postman
+## Postman Collection
 
-Se incluye una colección de Postman (`postman_collection.json`) con todos los endpoints disponibles para probar la librería. Para usarla:
+A Postman collection (`postman_collection.json`) is included with all available endpoints to test the library. To use it:
 
-1. Abre Postman
-2. Haz clic en "Import"
-3. Selecciona el archivo `postman_collection.json`
-4. La colección "Nestjs Auth Supabase Example" será importada
-5. Configura la variable de entorno `baseUrl` si es necesario (por defecto: http://localhost:3000)
+1. Open Postman
+2. Click on "Import"
+3. Select the `postman_collection.json` file
+4. The "Nestjs Auth Supabase Example" collection will be imported
+5. Configure the `baseUrl` environment variable if necessary (default: http://localhost:3000)
 
-### Flujo de prueba recomendado:
+### Recommended testing flow:
 
-1. Ejecuta "Sign In" para obtener un token
-2. Prueba "Get Current User" para verificar la autenticación
-3. Si el token ha expirado, usa "Refresh Token"
-4. Prueba "Sign Out" para cerrar la sesión actual o "Sign Out All Sessions" para cerrar todas las sesiones
+1. Run "Sign In" to get a token
+2. Test "Get Current User" to verify authentication
+3. If the token has expired, use "Refresh Token"
+4. Test "Sign Out" to close the current session or "Sign Out All Sessions" to close all sessions

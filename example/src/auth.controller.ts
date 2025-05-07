@@ -7,7 +7,7 @@ import {
   Res,
   UnauthorizedException,
 } from "@nestjs/common";
-import { Public, SupabaseAuthService } from "nestjs-auth-supabase";
+import { Public, SupabaseAuthService } from "@dotted-labs/nestjs-supabase-auth";
 import { Request, Response } from "express";
 
 @Controller("auth")

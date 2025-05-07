@@ -1,11 +1,14 @@
 # NestJS Auth Supabase
 
+[![npm version](https://badge.fury.io/js/%40dotted-labs%nestjs-supabase-auth.svg)](https://badge.fury.io/js/%40dotted-labs%nestjs-supabase-auth)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A simplified NestJS library for authenticating with Supabase.
 
 ## Installation
 
 ```bash
-npm install nestjs-auth-supabase
+npm install nestjs-supabase-auth
 ```
 
 ## Usage
@@ -14,7 +17,7 @@ npm install nestjs-auth-supabase
 
 ```typescript
 import { Module } from "@nestjs/common";
-import { SupabaseAuthModule } from "nestjs-auth-supabase";
+import { SupabaseAuthModule } from "nestjs-supabase-auth";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 
@@ -36,7 +39,7 @@ Or async configuration:
 ```typescript
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
-import { SupabaseAuthModule } from "nestjs-auth-supabase";
+import { SupabaseAuthModule } from "nestjs-supabase-auth";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 
@@ -62,7 +65,7 @@ export class AppModule {}
 
 ```typescript
 import { Injectable } from "@nestjs/common";
-import { SupabaseAuthService } from "nestjs-auth-supabase";
+import { SupabaseAuthService } from "nestjs-supabase-auth";
 
 @Injectable()
 export class AuthService {
@@ -92,7 +95,7 @@ export class AuthService {
 import { Controller, Post, Body, Get, Headers, Req, Res } from "@nestjs/common";
 import { Request, Response } from "express";
 import { AuthService } from "./auth.service";
-import { Public } from "nestjs-auth-supabase";
+import { Public } from "nestjs-supabase-auth";
 
 @Controller("auth")
 export class AuthController {
@@ -149,7 +152,7 @@ export class AuthController {
 ```typescript
 import { Module } from "@nestjs/common";
 import { APP_GUARD } from "@nestjs/core";
-import { SupabaseStrategyAuthGuard } from "nestjs-auth-supabase";
+import { SupabaseStrategyAuthGuard } from "nestjs-supabase-auth";
 
 @Module({
   providers: [
@@ -166,7 +169,7 @@ export class AppModule {}
 
 ```typescript
 import { Controller, Get } from "@nestjs/common";
-import { Public } from "nestjs-auth-supabase";
+import { Public } from "nestjs-supabase-auth";
 
 @Controller("auth")
 export class AuthController {
@@ -187,8 +190,8 @@ export class AuthController {
 
 ```typescript
 import { Controller, Get } from "@nestjs/common";
-import { User } from "nestjs-auth-supabase";
-import { SupabaseAuthUser } from "nestjs-auth-supabase";
+import { User } from "nestjs-supabase-auth";
+import { SupabaseAuthUser } from "nestjs-supabase-auth";
 
 @Controller("user")
 export class UserController {
@@ -225,7 +228,7 @@ For easier cookie handling, use the provided `TokenInfoInterceptor`:
 ```typescript
 import { Module } from "@nestjs/common";
 import { APP_INTERCEPTOR } from "@nestjs/core";
-import { TokenInfoInterceptor } from "nestjs-auth-supabase";
+import { TokenInfoInterceptor } from "nestjs-supabase-auth";
 
 @Module({
   providers: [
@@ -336,7 +339,7 @@ For a consistent error handling approach, you can use the included exception fil
 ```typescript
 import { Module } from "@nestjs/common";
 import { APP_FILTER } from "@nestjs/core";
-import { AuthExceptionFilter } from "nestjs-auth-supabase";
+import { AuthExceptionFilter } from "nestjs-supabase-auth";
 
 @Module({
   providers: [
@@ -370,7 +373,7 @@ You can also catch these exceptions directly in your controllers:
 ```typescript
 import { Controller, Post, Body, HttpCode, Catch } from "@nestjs/common";
 import { AuthService } from "./auth.service";
-import { InvalidCredentialsException } from "nestjs-auth-supabase";
+import { InvalidCredentialsException } from "nestjs-supabase-auth";
 
 @Controller("auth")
 export class AuthController {

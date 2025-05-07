@@ -3,7 +3,7 @@ import { AuthController } from "./auth.controller";
 import {
   SupabaseAuthModule,
   SupabaseStrategyAuthGuard,
-} from "nestjs-auth-supabase";
+} from "@dotted-labs/nestjs-supabase-auth";
 import * as dotenv from "dotenv";
 import { APP_GUARD, Reflector } from "@nestjs/core";
 dotenv.config();

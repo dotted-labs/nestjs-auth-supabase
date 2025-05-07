@@ -1,7 +1,7 @@
 {
-  "name": "nestjs-auth-supabase-example",
+  "name": "nestjs-supabase-auth-example",
   "version": "0.0.1",
-  "description": "Example application for nestjs-auth-supabase",
+  "description": "Example application for nestjs-supabase-auth",
   "main": "dist/main.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -16,7 +16,8 @@
     "cookie-parser": "1.4.7",
     "dotenv": "16.4.5",
     "reflect-metadata": "0.2.2",
-    "rxjs": "7.8.2"
+    "rxjs": "7.8.2",
+    "@dotted-labs/nestjs-supabase-auth": "0.0.5"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.8",
@@ -25,4 +26,4 @@
     "ts-node": "^10.9.2",
     "typescript": "5.8.3"
   }
-} 
+}
