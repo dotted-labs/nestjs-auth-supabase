@@ -25,8 +25,7 @@ import { AppService } from "./app.service";
   imports: [
     SupabaseAuthModule.forRoot({
       supabaseUrl: "YOUR_SUPABASE_URL",
-      supabaseKey: "YOUR_SUPABASE_ANON_KEY",
-      supabaseServiceKey: "YOUR_SUPABASE_ROLE_KEY",
+      supabaseKey: "YOUR_SUPABASE_ROLE_KEY",
     }),
   ],
   controllers: [AppController],
@@ -51,8 +50,7 @@ import { AppService } from "./app.service";
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         supabaseUrl: configService.get("SUPABASE_URL"),
-        supabaseKey: configService.get("SUPABASE_ANON_KEY"),
-        supabaseServiceKey: configService.get("SUPABASE_ROLE_KEY"),
+        supabaseKey: configService.get("SUPABASE_ROLE_KEY"),
       }),
       inject: [ConfigService],
     }),
