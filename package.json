@@ -4,6 +4,7 @@
   "description": "NestJS library for Supabase authentication",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "private": false,
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "format": "prettier --write \"src/**/*.ts\"",
